@@ -1,22 +1,26 @@
 using Godot;
 using System;
 
-public class ThrowGrenade : Node
+public class ThrowGrenade : Node2D
 {
+    [Export] Timer reloadTime;
+
+    Timer reloadTimer;
     PackedScene grenadeScene = new PackedScene();
     //The selected grenade to throw will be set in this class i think
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        reloadTimer = GetNode<Timer>("../ReloadTimer");
         grenadeScene = ResourceLoader.Load("res://Scenes/Grenades/Grenade.tscn") as PackedScene;
     }
 
     private void Throw()
     {
         Node2D grenade = grenadeScene.Instance() as Node2D;
-        grenade.Position = ((Node2D)GetParent()).GlobalPosition;
-        AddChild(grenade);
+        GetTree().Root.AddChild(grenade);
+        grenade.Transform = GlobalTransform;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,7 +28,11 @@ public class ThrowGrenade : Node
     {
         if (Input.IsActionPressed("left_mouse"))
         {
-            Throw();
+            if (reloadTimer.TimeLeft == 0)
+            {
+                reloadTimer.Start();
+                Throw();
+            }
         }
     }
 }

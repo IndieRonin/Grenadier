@@ -13,12 +13,17 @@ script = ExtResource( 1 )
 [node name="survivorHandgun" type="Sprite" parent="."]
 scale = Vector2( 0.125, 0.125 )
 texture = ExtResource( 2 )
+region_rect = Rect2( 64, 64, 64, 64 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.445435, 0.44545 )
 shape = SubResource( 1 )
 
-[node name="ThrowGrenade" type="Node" parent="."]
+[node name="ThrowGrenade" type="Node2D" parent="."]
+position = Vector2( 13, 0 )
 script = ExtResource( 3 )
 
 [node name="SelectGrenade" type="Node" parent="."]
+
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
