@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/trak2_panel2b.png-362e118e6550a71bdf7aa70a7da64aeb.stex"
+path="res://.import/explosion 3.png-0881cf912534597c07428d861a2b92ba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tiles/trak2_panel2b.png"
-dest_files=[ "res://.import/trak2_panel2b.png-362e118e6550a71bdf7aa70a7da64aeb.stex" ]
+source_file="res://Sprites/explosion 3.png"
+dest_files=[ "res://.import/explosion 3.png-0881cf912534597c07428d861a2b92ba.stex" ]
 
 [params]
 

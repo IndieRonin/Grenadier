@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/04pavinform256.png-1d125fd4d81fdea412464fb2eac1655b.stex"
+path="res://.import/floorTile2.png-4b2147310fe8e4341c24c59b5f963914.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tiles/04pavinform256.png"
-dest_files=[ "res://.import/04pavinform256.png-1d125fd4d81fdea412464fb2eac1655b.stex" ]
+source_file="res://Sprites/Tiles/floorTile2.png"
+dest_files=[ "res://.import/floorTile2.png-4b2147310fe8e4341c24c59b5f963914.stex" ]
 
 [params]
 

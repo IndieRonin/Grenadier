@@ -3,7 +3,7 @@ using System;
 
 public class Trail : Line2D
 {
-    int length = 50;
+    [Export] int length = 50;
 
     Vector2 point = Vector2.Zero;
 
