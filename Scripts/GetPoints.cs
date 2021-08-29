@@ -4,22 +4,30 @@ using System.Collections.Generic;
 using EventCallback;
 public class GetPoints : TileMap
 {
-    [Export] public Vector2 playerSpawnPoint;
-    [Export] public Vector2 exitPoint;
-    [Export] public List<Vector2> enemySpawnsPoint;
-    [Export] public List<Vector2> grenadeSpawnsPoint;
+    public Vector2 playerSpawnPoint;
+    public Vector2 exitSpawnPoint;
+    public List<Vector2> enemySpawnsPoint = new List<Vector2>();
+    public List<Vector2> grenadeSpawnsPoint = new List<Vector2>();
 
+    public Node2D playerPoint;
+    public Node2D exitPoint;
     public Node monsterSpawnPoints;
     public Node grenadeSpawnPoints;
 
-    public void OnGetPointsEvent(GetPointsEvent gpei)
+    public override void _Ready()
     {
         GetPointsEvent.RegisterListener(OnGetPointsEvent);
-        playerSpawnPoint = GetNode<Node2D>("PlayerSpawn").Position;
-        exitPoint = GetNode<Node2D>("ExitSpawn").Position;
+
+        playerPoint = GetNode<Node2D>("PlayerSpawn");
+        exitPoint = GetNode<Node2D>("ExitSpawn");
         monsterSpawnPoints = GetNode<Node>("MonsterSpawnPoints");
         grenadeSpawnPoints = GetNode<Node>("GrenadeSpawnPoints");
+    }
 
+    public void OnGetPointsEvent(GetPointsEvent gpei)
+    {
+        playerSpawnPoint = playerPoint.Position;
+        exitSpawnPoint = exitPoint.Position;
         for (int i = 0; i < monsterSpawnPoints.GetChildCount(); i++)
         {
             enemySpawnsPoint.Add(((Node2D)monsterSpawnPoints.GetChild(i)).Position);
@@ -31,8 +39,14 @@ public class GetPoints : TileMap
         }
 
         gpei.playerSpawnPoint = playerSpawnPoint;
-        gpei.exitPoint = exitPoint;
+        gpei.exitPoint = exitSpawnPoint;
         gpei.enemySpawnsPoint = enemySpawnsPoint;
         gpei.grenadeSpawnsPoint = grenadeSpawnsPoint;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        GetPointsEvent.UnregisterListener(OnGetPointsEvent);
     }
 }

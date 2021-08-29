@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Sprites/Tiles/Tileset.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/GetPoints.cs" type="Script" id=2]
+[ext_resource path="res://Scenes/BoxBreakable.tscn" type="PackedScene" id=3]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -71,7 +72,7 @@ position = Vector2( 2530.78, 2276.14 )
 [node name="MonsterSpawnPoints" type="Node" parent="."]
 
 [node name="MonsterSpawn" type="Node2D" parent="MonsterSpawnPoints"]
-position = Vector2( 1568.84, 229.397 )
+position = Vector2( 1244.64, 348.057 )
 
 [node name="MonsterSpawn2" type="Node2D" parent="MonsterSpawnPoints"]
 position = Vector2( 1510.29, 548.563 )
@@ -104,7 +105,7 @@ position = Vector2( 2389.83, 306.086 )
 position = Vector2( 1656.57, 1153.71 )
 
 [node name="MonsterSpawn12" type="Node2D" parent="MonsterSpawnPoints"]
-position = Vector2( 1629.66, 262.36 )
+position = Vector2( 828.258, 181.167 )
 
 [node name="MonsterSpawn13" type="Node2D" parent="MonsterSpawnPoints"]
 position = Vector2( 1378.37, 611.04 )
@@ -113,3 +114,30 @@ position = Vector2( 1378.37, 611.04 )
 position = Vector2( 1501.6, 220.288 )
 
 [node name="GrenadeSpawnPoints" type="Node" parent="."]
+
+[node name="BoxBreakable9" parent="." instance=ExtResource( 3 )]
+position = Vector2( 775.34, 302.705 )
+
+[node name="BoxBreakable" parent="." instance=ExtResource( 3 )]
+position = Vector2( 739.704, 282.214 )
+
+[node name="BoxBreakable2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 753.959, 248.36 )
+
+[node name="BoxBreakable3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 719.214, 215.397 )
+
+[node name="BoxBreakable4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 753.068, 203.815 )
+
+[node name="BoxBreakable5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 739.704, 169.07 )
+
+[node name="BoxBreakable6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 748.613, 134.325 )
+
+[node name="BoxBreakable7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 756.631, 100.471 )
+
+[node name="BoxBreakable8" parent="." instance=ExtResource( 3 )]
+position = Vector2( 721.886, 84.4349 )

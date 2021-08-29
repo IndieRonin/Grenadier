@@ -20,15 +20,15 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 region_rect = Rect2( 64, 64, 64, 64 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.445435, 0.44545 )
+shape = SubResource( 1 )
+
 [node name="RoundLight" parent="." instance=ExtResource( 6 )]
 position = Vector2( 0, 0.44545 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Flashlight" parent="." instance=ExtResource( 5 )]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.445435, 0.44545 )
-shape = SubResource( 1 )
 
 [node name="ThrowGrenade" type="Node2D" parent="."]
 position = Vector2( 13, 0 )
