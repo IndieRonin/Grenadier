@@ -10,7 +10,7 @@ public class Camera : Camera2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-
+        SetCameraTargetEvent.RegisterListener(OnSetCameraTargetEvent);
     }
 
     private void OnSetCameraTargetEvent(SetCameraTargetEvent sctei)
@@ -40,5 +40,12 @@ public class Camera : Camera2D
             //The camera removes itself from the parent
             GetParent().RemoveChild(this);
         }
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        SetCameraTargetEvent.UnregisterListener(OnSetCameraTargetEvent);
+
     }
 }

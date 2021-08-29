@@ -36,6 +36,7 @@ one_shot = true
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 3 )
+health = 50
 damage = 100
 
 [connection signal="body_entered" from="LOS" to="." method="OnArea2DBodyEntered"]

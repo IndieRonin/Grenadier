@@ -97,7 +97,7 @@ public class Main : Node2D
                 }
                 break;
             case GameStates.GAME:
-                
+
                 break;
             case GameStates.MENU:
                 break;
