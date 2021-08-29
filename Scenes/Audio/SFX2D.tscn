@@ -1,0 +1,3 @@
+[gd_scene format=2]
+
+[node name="SFX2D" type="AudioStreamPlayer2D"]

@@ -1,14 +1,22 @@
 using Godot;
 using System;
 
-public class Explosion : AnimatedSprite
+public class Explosion : Node2D
 {
-
+    Particles2D dust;
+    Particles2D explosion;
+    Particles2D sparks;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        Playing = true;
+        dust = GetNode<Particles2D>("Dust");
+        explosion = GetNode<Particles2D>("Explosion");
+        sparks = GetNode<Particles2D>("Sparks");
+
+        dust.Emitting = true;
+        explosion.Emitting = true;
+        sparks.Emitting = true;
     }
 
     public void OnLifeTimerTimeout()

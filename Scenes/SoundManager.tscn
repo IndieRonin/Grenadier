@@ -1,0 +1,21 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Audio/MusicPlayer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Audio/SFX2D.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/SoundManager.cs" type="Script" id=3]
+[ext_resource path="res://Sounds/Music/Menu.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/Music/Battle.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/Music/Game.wav" type="AudioStream" id=6]
+
+[node name="SoundManager" type="Node2D"]
+script = ExtResource( 3 )
+musicGame = ExtResource( 4 )
+musicMenu = ExtResource( 6 )
+musicBattle = ExtResource( 5 )
+
+[node name="MusicPlayer" parent="." instance=ExtResource( 1 )]
+stream = ExtResource( 5 )
+volume_db = -70.0
+
+[node name="SFX2D" parent="." instance=ExtResource( 2 )]
+volume_db = -70.0

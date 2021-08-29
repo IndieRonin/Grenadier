@@ -21,7 +21,6 @@ public class ThrowGrenade : Node2D
         Node2D grenade = grenadeScene.Instance() as Node2D;
         grenade.GlobalPosition = GlobalPosition;
         GetTree().Root.AddChild(grenade);
-
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

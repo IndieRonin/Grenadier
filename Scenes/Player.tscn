@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/PlayerMovement.cs" type="Script" id=1]
-[ext_resource path="res://Sprites/handgun/idle/survivor-idle_handgun_0.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Player.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/ThrowGrenade.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/Health.cs" type="Script" id=4]
+[ext_resource path="res://Scenes/VFX/Flashlight.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/VFX/RoundLight.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 14.0
 
 [node name="Player" type="RigidBody2D" groups=[
 "Player",
@@ -12,10 +16,16 @@
 gravity_scale = 0.0
 script = ExtResource( 1 )
 
-[node name="survivorHandgun" type="Sprite" parent="."]
-scale = Vector2( 0.125, 0.125 )
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 region_rect = Rect2( 64, 64, 64, 64 )
+
+[node name="RoundLight" parent="." instance=ExtResource( 6 )]
+position = Vector2( 0, 0.44545 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Flashlight" parent="." instance=ExtResource( 5 )]
+position = Vector2( 235, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.445435, 0.44545 )
@@ -29,3 +39,8 @@ script = ExtResource( 3 )
 
 [node name="ReloadTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Shield" type="Sprite" parent="."]

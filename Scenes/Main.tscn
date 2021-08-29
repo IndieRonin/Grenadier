@@ -1,27 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/TileMap.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Box.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Main.cs" type="Script" id=7]
+[ext_resource path="res://Scenes/SoundManager.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/WorldEnvironment.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/UICanvasLayer.tscn" type="PackedScene" id=10]
 
 [node name="Main" type="Node2D"]
-
-[node name="TileMap" parent="." instance=ExtResource( 3 )]
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 333.75, 315.75 )
-
-[node name="Enemy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 261.345, 155.764 )
-
-[node name="Box" parent="." instance=ExtResource( 4 )]
-position = Vector2( 492.099, 413.835 )
-rotation = 0.785398
-
-[node name="Box2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 547.629, 290.802 )
-
-[node name="Box3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 490.116, 138.89 )
-rotation = 1.1973
+script = ExtResource( 7 )
+persistentScenes = [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 10 ) ]

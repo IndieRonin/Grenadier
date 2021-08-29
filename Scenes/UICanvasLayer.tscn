@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/UI/TitleScreen.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/UIManager.cs" type="Script" id=2]
+[ext_resource path="res://Scenes/UI/CreditsScreen.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/UI/MenuScreen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/UI/OptionsScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/UI/HUDScreen.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/UI/FailScreen.tscn" type="PackedScene" id=7]
+
+[node name="UICanvasLayer" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="TitleScreen" parent="." instance=ExtResource( 1 )]
+visible = false
+
+[node name="OptionsScreen" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[node name="CreditsScreen" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="MenuScreen" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[node name="HUDScreen" parent="." instance=ExtResource( 6 )]
+visible = false
+
+[node name="FailScreen" parent="." instance=ExtResource( 7 )]
+visible = false

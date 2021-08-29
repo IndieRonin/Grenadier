@@ -43,7 +43,6 @@ public class Grenade : RigidBody2D
 
     private void Explode()
     {
-        GD.Print("bodiesList.Count in explode function = " + bodiesList.Count);
         foreach (ulong id in bodiesList)
         {
             HitEvent hei = new HitEvent();
@@ -65,18 +64,12 @@ public class Grenade : RigidBody2D
         if (bodiesList.Contains(body.GetInstanceId())) return;
         if (body.GetInstanceId() == GetInstanceId()) return;
         bodiesList.Add(body.GetInstanceId());
-
-        //GD.Print("Body added to grenade list = " + body.Name);
-        //GD.Print("bodiesList.Count = " + bodiesList.Count);
     }
 
     public void OnBlastAreaBodyExited(RigidBody2D body)
     {
         if (!bodiesList.Contains(body.GetInstanceId())) return;
         bodiesList.Remove(body.GetInstanceId());
-
-        //GD.Print("Body removed to grenade list = " + body.Name);
-        //GD.Print("bodiesList.Count = " + bodiesList.Count);
     }
     public override void _ExitTree()
     {

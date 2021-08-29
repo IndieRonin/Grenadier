@@ -7,14 +7,18 @@ public class Enemy : RigidBody2D
     RayCast2D los;
     Node2D target;
     //The speed of the enemie
-    [Export] float speed;
-
+    float speed = 10000;
+    //If the enemy can attack
+    bool canAttack = true;
+    //The attack timer in the scene
+    Timer attackTimer;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         //Reference the ray
         los = GetNode<RayCast2D>("LOSRay");
         HitEvent.RegisterListener(OnHitEvent);
+        attackTimer = GetNode<Timer>("AttackTimer");
 
     }
 
@@ -22,17 +26,50 @@ public class Enemy : RigidBody2D
     public override void _PhysicsProcess(float delta)
     {
         if (target == null) return;
-        AddForce(Vector2.Zero, (target.GlobalPosition - GlobalPosition).Normalized() * speed);
+        //Counter the parents rotation to have the Raycast go in the right direction
+        los.Rotation = -Rotation;
+        los.CastTo = target.GlobalPosition - GlobalPosition;
+        //Set the ray to active to check for collisions
+        los.Enabled = true;
+        //Force the raycast to cast to update hte collsions, enable if the collsion are not picking up fast enough
+        //los.ForceRaycastUpdate();
+        if (los.IsColliding())
+        {
+            if (((Node2D)los.GetCollider()).IsInGroup("Player"))
+            {
+                Vector2 dir = GlobalPosition.DirectionTo(target.GlobalPosition);
+                LinearVelocity = dir * speed * delta;
+            }
+        }
         LookAt(target.GlobalPosition);
+
+        if (GlobalPosition.DistanceTo(target.GlobalPosition) < 15 && canAttack)
+        {
+            HitEvent hei = new HitEvent();
+            hei.callerClass = "Enemy: _PhysicsProcess()";
+            hei.targetID = target.GetInstanceId();
+            hei.FireEvent();
+            //Set the can attack variable to false until the attack timer has run out
+            canAttack = false;
+            //Start the attack timer
+            attackTimer.Start();
+        }
+    }
+
+    public void OnAttackTimerTimeout()
+    {
+        canAttack = true;
     }
 
     private void OnHitEvent(HitEvent hei)
     {
         if (hei.targetID == GetInstanceId())
         {
-            GD.Print("Enemy - OnHitEvent(): hei.targetID = " + hei.targetID);
-            GD.Print("Enemy - OnHitEvent(): GetInstanceId() = " + GetInstanceId());
-            //Play death animation
+            DeathEvent dei = new DeathEvent();
+            dei.callerClass = "Enemy: OnHitEvent()";
+            dei.targetID = GetInstanceId();
+            dei.FireEvent();
+
             QueueFree();
         }
     }
