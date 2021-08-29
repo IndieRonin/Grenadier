@@ -13,15 +13,15 @@ public class ObjectSpawner : Node2D
     [Export] public PackedScene playerScene = new PackedScene();
     [Export] public PackedScene camera2DScene = new PackedScene();
     [Export] public PackedScene exitScene = new PackedScene();
-    [Export] public List<PackedScene> monsterScenes = new List<PackedScene>();
-    [Export] public List<PackedScene> grenadeScenes = new List<PackedScene>();
+    [Export] public PackedScene monsterScene = new PackedScene();
+    [Export] public PackedScene grenadeScene = new PackedScene();
 
 
     private Node2D playerNode;
     private Node2D camera2DNode;
     private Node2D exitNode;
-    private List<Node2D> monsterNodes = new List<Node2D>();
-    private List<Node2D> grenadeNodes = new List<Node2D>();
+    private Node2D monsterNode;
+    private Node2D grenadeNode;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -35,51 +35,40 @@ public class ObjectSpawner : Node2D
         exitPoint = gpei.exitPoint;
         grenadeSpawnsPoint = gpei.grenadeSpawnsPoint;
 
-
-        GD.Print("playerSpawnPoint = " + playerSpawnPoint);
         playerNode = playerScene.Instance() as Node2D;
         playerNode.Position = playerSpawnPoint;
         GetParent().AddChild(playerNode);
         camera2DNode = camera2DScene.Instance() as Node2D;
         GetParent().AddChild(camera2DNode);
+
+        SetCameraTargetEvent sctei = new SetCameraTargetEvent();
+        sctei.callerClass = "ObjectSpawner: _Ready()";
+        sctei.targetID = playerNode.GetInstanceId();
+        sctei.FireEvent();
+
         exitNode = exitScene.Instance() as Node2D;
         exitNode.Position = exitPoint;
         GetParent().AddChild(exitNode);
 
-
-        if (monsterScenes.Count > 0)
+        if (enemySpawnsPoint.Count > 0)
         {
-            int i = 0;
-            //Loop through all the scenes in the list
-            foreach (PackedScene scene in monsterScenes)
+            for (int i = 0; i < enemySpawnsPoint.Count; i++)
             {
                 //Add the node of the scenes
-                monsterNodes.Add(scene.Instance() as Node2D);
-            }
-
-            foreach (Node2D node in monsterNodes)
-            {
-                node.Position = enemySpawnsPoint[i];
-                GetParent().AddChild(node);
-                i++;
+                monsterNode = monsterScene.Instance() as Node2D;
+                monsterNode.Position = enemySpawnsPoint[i];
+                GetParent().AddChild(monsterNode);
             }
         }
 
-        if (grenadeScenes.Count > 0)
+        if (grenadeSpawnsPoint.Count > 0)
         {
-            int i = 0;
-            //Loop through all the scenes in the list
-            foreach (PackedScene scene in grenadeScenes)
+            for (int i = 0; i < grenadeSpawnsPoint.Count; i++)
             {
                 //Add the node of the scenes
-                grenadeNodes.Add(scene.Instance() as Node2D);
-            }
-            //Loop through the list of scene nodes and add them to the current scene as children
-            foreach (Node2D node in grenadeNodes)
-            {
-                node.Position = grenadeSpawnsPoint[i];
-                GetParent().AddChild(node);
-                i++;
+                grenadeNode = grenadeScene.Instance() as Node2D;
+                grenadeNode.Position = grenadeSpawnsPoint[i];
+                GetParent().AddChild(grenadeNode);
             }
         }
     }
