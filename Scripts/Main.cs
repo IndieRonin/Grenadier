@@ -72,6 +72,18 @@ public class Main : Node2D
             }
         }
     }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+        if (Input.IsActionJustPressed("key_escape"))
+        {
+            ChangeUIStateEvent cuisei = new ChangeUIStateEvent();
+            cuisei.callerClass = "Main: _Process()";
+            cuisei.newState = UIStates.MENU;
+            cuisei.FireEvent();
+        }
+    }
     //NOTE: Needs to be added to the event listener system later
     //Changes the games state when recieving the change state message
     public void OnChangeGameStateEvent(ChangeGameStateEvent cgse)
@@ -113,5 +125,10 @@ public class Main : Node2D
                 cuisei.FireEvent();
                 break;
         }
+    }
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        ChangeGameStateEvent.UnregisterListener(OnChangeGameStateEvent);
     }
 }
