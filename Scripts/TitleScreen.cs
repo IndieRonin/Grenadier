@@ -10,6 +10,11 @@ public class TitleScreen : Node2D
         cuisei.callerClass = "TitleScreen: OnStartButtonUp()";
         cuisei.newState = UIStates.HUD;
         cuisei.FireEvent();
+
+        ChangeGameStateEvent cgsei = new ChangeGameStateEvent();
+        cgsei.callerClass = "TitleScreen: OnStartButtonUp";
+        cgsei.newState = GameStates.INIT;
+        cgsei.FireEvent();
     }
     public void OnOptionsButtonUp()
     {

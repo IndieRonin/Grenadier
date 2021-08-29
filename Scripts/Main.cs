@@ -9,6 +9,7 @@ using EventCallback;
 public enum GameStates
 {
     START_SCREEN,
+    INIT,
     GAME,
     MENU,
     WIN,
@@ -21,16 +22,10 @@ public class Main : Node2D
     private GameStates currentState;
     //The external list of persistant scenes
     [Export] private List<PackedScene> persistentScenes = new List<PackedScene>();
-    //The external list of scenes to instantiate when the start screen is opened
-    [Export] private List<PackedScene> uiScenes = new List<PackedScene>();
     //The external list of scenes to instantiate when the game is started from the main menu
     [Export] private List<PackedScene> gameScenes = new List<PackedScene>();
-    //The external list of scenes to instantiate when the game menu is opened
-
     //The list of nodes that will be used during the whole game and not destroyd n between scenes (Input, sound)
     private List<Node> persistentNodes = new List<Node>();
-    //The list of nodes that will hold the pre loaded scenes
-    private List<Node> uiNodes = new List<Node>();
     //The list of nodes that will hold the pre loaded scenes
     private List<Node> gameNodes = new List<Node>();
 
@@ -56,22 +51,8 @@ public class Main : Node2D
                 AddChild(node);
             }
         }
-        //Check if the ui scenes list is not zero 
-        if (uiScenes.Count > 0)
-        {
-            //Loop through all the scenes in the list
-            foreach (PackedScene scene in uiScenes)
-            {
-                //Add the node of the scenes
-                uiNodes.Add(scene.Instance());
-            }
-            //Loop through the list of scene nodes and add them to the current scene as children
-            foreach (Node node in uiNodes)
-            {
-                AddChild(node);
-            }
-        }
     }
+
 
     public override void _Process(float delta)
     {
@@ -96,8 +77,9 @@ public class Main : Node2D
         switch (currentState)
         {
             case GameStates.START_SCREEN:
+                //Play title music
                 break;
-            case GameStates.GAME:
+            case GameStates.INIT:
                 //Check if the persistent scenes list is not zero 
                 if (gameScenes.Count > 0)
                 {
@@ -113,6 +95,9 @@ public class Main : Node2D
                         AddChild(node);
                     }
                 }
+                break;
+            case GameStates.GAME:
+                
                 break;
             case GameStates.MENU:
                 break;
@@ -131,4 +116,5 @@ public class Main : Node2D
         base._ExitTree();
         ChangeGameStateEvent.UnregisterListener(OnChangeGameStateEvent);
     }
+
 }

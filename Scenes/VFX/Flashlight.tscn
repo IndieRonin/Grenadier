@@ -4,4 +4,6 @@
 
 [node name="Flashlight" type="Light2D"]
 texture = ExtResource( 1 )
+offset = Vector2( 230, 0 )
 mode = 2
+shadow_enabled = true

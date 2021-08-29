@@ -5,3 +5,4 @@
 [node name="RoundLight" type="Light2D"]
 texture = ExtResource( 1 )
 mode = 2
+shadow_enabled = true

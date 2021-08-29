@@ -3,7 +3,6 @@ using System;
 using EventCallback;
 public class OptionsScreen : Node2D
 {
-
     Slider musicVolume;
     Slider soundVolume;
 
@@ -12,7 +11,6 @@ public class OptionsScreen : Node2D
         base._Ready();
         musicVolume = GetNode<Slider>("MusicVolume");
         soundVolume = GetNode<Slider>("SoundVolume");
-
     }
     public void OnMusicVolumeValueChanged()
     {
@@ -28,7 +26,6 @@ public class OptionsScreen : Node2D
         cvei.callerClass = "OptionsScreen: OnSoundVolumeValueChanged()";
         cvei.soundVolume = (float)((soundVolume.Value * -80) / 100);
         cvei.FireEvent();
-
     }
 
     public void OnBackButtonUp()

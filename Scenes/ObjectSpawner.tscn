@@ -1,0 +1,14 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/ObjectSpawner.cs" type="Script" id=1]
+[ext_resource path="res://Scenes/Exit.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Camera.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=5]
+
+[node name="ObjectSpawner" type="Node2D"]
+script = ExtResource( 1 )
+playerScene = ExtResource( 3 )
+camera2DScene = ExtResource( 4 )
+exitScene = ExtResource( 2 )
+monsterScenes = [ ExtResource( 5 ) ]

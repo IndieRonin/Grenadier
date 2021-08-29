@@ -21,7 +21,6 @@ public class DeathManager : Node2D
             cgsei.newState = GameStates.FAIL;
             cgsei.FireEvent();
         }
-        GD.Print("Something has died");
     }
 
 

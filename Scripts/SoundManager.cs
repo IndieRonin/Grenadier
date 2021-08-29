@@ -26,8 +26,8 @@ public class SoundManager : Node2D
     {
         ChangeVolumeEvent.RegisterListener(OnChangeVolumeEvent);
         ChangeGameStateEvent.RegisterListener(OnChangeGameStateEvent);
-        musicPlayer = GetNode<AudioStreamPlayer>("/MusicPlayer");
-        soundPlayer = GetNode<AudioStreamPlayer2D>("/SFX2D");
+        musicPlayer = GetNode<AudioStreamPlayer>("MusicPlayer");
+        soundPlayer = GetNode<AudioStreamPlayer2D>("SFX2D");
     }
 
     private void OnChangeVolumeEvent(ChangeVolumeEvent cvei)

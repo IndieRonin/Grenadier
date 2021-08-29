@@ -19,7 +19,6 @@ public class Enemy : RigidBody2D
         los = GetNode<RayCast2D>("LOSRay");
         HitEvent.RegisterListener(OnHitEvent);
         attackTimer = GetNode<Timer>("AttackTimer");
-
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,7 +42,7 @@ public class Enemy : RigidBody2D
         }
         LookAt(target.GlobalPosition);
 
-        if (GlobalPosition.DistanceTo(target.GlobalPosition) < 15 && canAttack)
+        if (GlobalPosition.DistanceTo(target.GlobalPosition) < 18 && canAttack)
         {
             HitEvent hei = new HitEvent();
             hei.callerClass = "Enemy: _PhysicsProcess()";
